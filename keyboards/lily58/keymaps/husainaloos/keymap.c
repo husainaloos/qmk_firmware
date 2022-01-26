@@ -6,6 +6,7 @@ enum layer_number {
   _QWERTY = 0,
   _L2,
   _ARROW,
+  _NAVIG,
   _MOUSE,
   _ADJUST,
 };
@@ -20,9 +21,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |Backsp|   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------| ARROW |    |       |------+------+------+------+------+------|
- * |MOUSE |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |      |
+ * |      |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |      |
  * `-----------------------------------------/       /     \ Shft \-----------------------------------------'
- *                   | LAlt | GUI  | L2   | /Space  /       \ESCAPE\  | CTRL |ENTER | RALT |
+ *                   | LAlt | GUI  | L2   | /Space  /       \ESCAPE\  | CTRL | ALT  | ENT  |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -32,28 +33,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,      KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_BSPC,     KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   _______,     KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, MO(_ARROW), _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
-  KC_LALT, KC_LGUI, TT(_L2), KC_SPC, RSFT_T(KC_ESC), KC_RCTL, KC_ENT, KC_RALT
+  KC_LALT, KC_LGUI, TT(_L2), KC_SPC, RSFT_T(KC_ESC), KC_RCTL, KC_RALT, KC_ENT
 ),
 /* L2
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |BSPC  |  F6  |                    |  F7  |  F8  |  [   |  ]   |      |      |
+ * |      |      |      |      |GUITAB|  F6  |                    |  F7  |  F8  |   [  |  ]   |  +   |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |  &   |      |      |      |   %  |-------.    ,-------|   ^  | ENT  |   (  |  )   |  =   |      |
- * |------+------+------+------+------+------| MOUSE |    |       |------+------+------+------+------+------|
+ * |      |  &   |      |      | BSPC |   %  |-------.    ,-------|      | ENT  |   (  |  )   |  =   |      |
+ * |------+------+------+------+------+------| NAVIG |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      |      |   {  |  }   |      |   |  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |      |      |      | /       /       \ SPACE\  |      |      |      |
+ *                   |      |      |      | /       /       \      \  |      |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_L2] = LAYOUT(
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,
-  _______, _______, _______, _______, KC_BSPC, KC_F6,                        KC_F7,   KC_F8,   KC_LBRC, KC_RBRC,  _______, _______,
-  KC_GRV,  KC_AMPR, _______, _______, _______, KC_PERC,                      KC_CIRC, KC_ENT,  KC_RPRN, KC_LPRN,  KC_EQUAL,_______,
-  _______, _______, _______, _______, _______, _______, TO(_MOUSE), _______, _______, _______, KC_LCBR, KC_RCBR,  _______, KC_BSLS,
-                             _______, _______, _______, _______,    KC_SPC,  _______, _______, _______
+  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,        KC_F6,                        KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
+  _______, _______, _______, _______, LGUI(KC_TAB), KC_F6,                        KC_F7,   KC_F8,   KC_LBRC, KC_RBRC, KC_PLUS, _______,
+  _______, KC_AMPR, _______, _______, KC_BSPC,      KC_PERC,                      _______, KC_ENT,  KC_LPRN, KC_RPRN, KC_EQUAL,_______,
+  _______, _______, _______, _______, _______,      _______, TO(_NAVIG), _______, _______, _______, KC_LCBR, KC_RCBR, _______, KC_BSLS,
+                             _______, _______,      _______, _______,    _______, _______, _______, _______
 ),
 /* ARROW
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -77,7 +78,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______, _______, _______,_______
 ),
-/* MOUSE
+/* NAVIG
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |QWERTY|      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |   `  |      |      |W_UP  |      |      |                    |      |BUT_L |BUT_R |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      | ACL0 | ACL1 | ACL2 |      |-------.    ,-------| M_L  | M_D  | M_UP | M_RT |      |      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |      |      |W_DOWN|      |      |-------|    |-------|      |      |      |      |      |      |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   |      |      |      | /       /       \      \  |      |      |      |
+ *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
+
+[_NAVIG] = LAYOUT(
+  TO(_QWERTY), _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
+  XXXXXXX,     XXXXXXX, XXXXXXX, KC_WH_U, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX, _______,
+  XXXXXXX,     XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2, XXXXXXX,                   KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
+  XXXXXXX,     XXXXXXX, XXXXXXX, KC_WH_D, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                             _______, _______, _______, _______, _______, _______, _______,_______
+),
+/* MOUSE //TBD
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |QWERTY|      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -114,11 +137,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
   [_ADJUST] = LAYOUT(
-  XXXXXXX, XXXXXXX,         XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX,    XXXXXXX,           XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, KC_SLEP, KC_WAKE, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX,    XXXXXXX,           XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX,         XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX,                       KC_KB_MUTE, KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX,         XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,           XXXXXXX,         XXXXXXX,         XXXXXXX, XXXXXXX,
-                            _______, _______, _______, _______, _______, _______,    _______,           XXXXXXX
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX,    XXXXXXX,           XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_SLEP, KC_WAKE, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX,    XXXXXXX,           XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_KB_MUTE, KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,           XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX,
+                             _______, _______, _______, _______, _______, _______,    _______,           XXXXXXX
   )
 };
 
@@ -154,8 +177,8 @@ const char *read_layer_indicator(void) {
   case _ARROW:
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: ARROW (%d)", get_highest_layer(layer_state));
     break;
-  case _MOUSE:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: MOUSE (%d)", get_highest_layer(layer_state));
+  case _NAVIG:
+    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: NAVIG (%d)", get_highest_layer(layer_state));
     break;
   case _ADJUST:
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: ADJUST (%d)", get_highest_layer(layer_state));
