@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |      |
  * `-----------------------------------------/       /     \ Shft \-----------------------------------------'
  *                   | LAlt | GUI  | L2   | /Space  /       \ESCAPE\  | CTRL | ALT  | ENT  |
- *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   |      |      |      |/       /         \      \ | ENTR |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 
@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,      KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_BSPC,     KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   _______,     KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, MO(_ARROW), _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
-  KC_LALT, KC_LGUI, TT(_L2), KC_SPC, RSFT_T(KC_ESC), KC_RCTL, KC_RALT, KC_ENT
+  KC_LALT, KC_LGUI, TT(_L2), KC_SPC, RSFT_T(KC_ESC), RCTL_T(KC_ENT), KC_RALT, KC_ENT
 ),
 /* L2
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -154,7 +154,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (!is_keyboard_left())
-    return OLED_ROTATION_180;
+    return OLED_ROTATION_270;
   return OLED_ROTATION_0;
 }
 
@@ -169,22 +169,22 @@ const char *read_layer_indicator(void) {
   switch (get_highest_layer(layer_state))
   {
   case _QWERTY:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Default (%d)", get_highest_layer(layer_state));
+    snprintf(layer_state_str, sizeof(layer_state_str), "QWERT");
     break;
   case _L2:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: L2 (%d)", get_highest_layer(layer_state));
+    snprintf(layer_state_str, sizeof(layer_state_str), "L2");
     break;
   case _ARROW:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: ARROW (%d)", get_highest_layer(layer_state));
+    snprintf(layer_state_str, sizeof(layer_state_str), "ARROW");
     break;
   case _NAVIG:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: NAVIG (%d)", get_highest_layer(layer_state));
+    snprintf(layer_state_str, sizeof(layer_state_str), "NAVIG");
     break;
   case _ADJUST:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: ADJUST (%d)", get_highest_layer(layer_state));
+    snprintf(layer_state_str, sizeof(layer_state_str), "ADJUST");
     break;
   default:
-    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: UNKNOWN-%d", get_highest_layer(layer_state));
+    snprintf(layer_state_str, sizeof(layer_state_str), "UNKNWN");
   }
 
   return layer_state_str;
