@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      | NAVIG|  &   |  (   |  )   |  =   |-------.    ,-------| LEFT | DOWN |  UP  |RIGHT |  \   |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |  |   |  [   |  ]   |      |-------|    |-------|      |      |      |  %   |      |      |
+ * |      | MOUSE|  |   |  [   |  ]   |      |-------|    |-------|      |      |      |  %   |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |      | /       /       \      \  |      |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_F1,   KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
   _______, _______,    KC_AT,   KC_LCBR, KC_RCBR, KC_F6,                     KC_F7,   KC_F8,   KC_PLUS, KC_RBRC, _______, _______,
   _______, TO(_NAVIG), KC_AMPR, KC_LPRN, KC_RPRN, KC_EQL,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, _______,
-  _______, _______,    KC_PIPE, KC_LBRC, KC_RBRC, _______, _______, _______, _______, _______, _______, KC_PERC, _______, _______,
+  _______, TO(_MOUSE), KC_PIPE, KC_LBRC, KC_RBRC, _______, _______, _______, _______, _______, _______, KC_PERC, _______, _______,
                                 _______, _______, _______, _______, _______, _______, _______, _______
 ),
 /* NAVIG
@@ -77,15 +77,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, KC_WH_U, KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX,
                              _______, _______, _______, _______, _______, _______, _______,_______
 ),
-/* MOUSE //TBD
+/* MOUSE
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |QWERTY|      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |      |      | M_UP |      |      |                    |      |BUT_L |BUT_R |      |      |      |
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |M_LEFT|M_DOWN|M_RIGH|      |-------.    ,-------|      | ACL0 | ACL1 | ACL2 |      |      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      |W_UP  |W_DOWN|      |      |      |
+ * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
+ * |------+------+------+------+------+------| ENTER |    |       |------+------+------+------+------+------|
+ * |      | UNDO | CUT  | COPY | PASTE|      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |      | /       /       \      \  |      |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -93,11 +93,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_MOUSE] = LAYOUT(
-  TO(_QWERTY), _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
-  XXXXXXX,     XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX, _______,
-  XXXXXXX,     XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX,                   XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2, XXXXXXX, XXXXXXX,
-  XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, KC_WH_U, KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX,
-                             _______, _______, _______, _______, _______, _______, _______,_______
+  TO(_QWERTY), _______, _______, _______, _______,  _______,                   _______, _______, _______, _______, _______, _______,
+  _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  _______,     KC_UNDO, KC_CUT,  KC_COPY, KC_PASTE, XXXXXXX, KC_ENT,  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                 _______, _______,  _______, _______, _______, _______, _______,_______
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -153,6 +153,9 @@ const char *read_layer_indicator(void) {
     break;
   case _NAVIG:
     snprintf(layer_state_str, sizeof(layer_state_str), "NAVIG");
+    break;
+  case _MOUSE:
+    snprintf(layer_state_str, sizeof(layer_state_str), "MOUSE");
     break;
   case _ADJUST:
     snprintf(layer_state_str, sizeof(layer_state_str), "ADJUST");
