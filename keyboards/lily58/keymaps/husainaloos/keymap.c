@@ -6,8 +6,9 @@ enum layer_number {
   _QWERTY = 0,
   _L1,
   _NAVIG,
-  _MOUSE,
+  _WINCT,
   _ADJUST,
+  _MOUSE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -32,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,      KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                              KC_Y,           KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS,
   KC_BSPC,     KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                              KC_H,           KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   KC_LSFT,     KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,    _______, KC_ENT,          KC_N,           KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
-                                KC_LCTL, KC_LGUI, TT(_L1), KC_SPC,  RSFT_T(KC_ESC),  RCTL_T(KC_ENT), KC_RALT, KC_ENT
+                                KC_LCTL, KC_LGUI, MO(_L1), KC_SPC,  RSFT_T(KC_ESC),  RCTL_T(KC_ENT), KC_RALT, KC_ENT
 ),
 /* L1
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -40,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |  @   |  {   |  }   |  F6  |                    |  F7  |  F8  |  =   |  +   |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      | NAVIG|  &   |  (   |  )   |      |-------.    ,-------| LEFT | DOWN |  UP  |RIGHT |  \   |      |
+ * |      | NAVIG|  &   |  (   |  )   |WINCT |-------.    ,-------| LEFT | DOWN |  UP  |RIGHT |  \   |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      | MOUSE|  |   |  [   |  ]   |      |-------|    |-------|      |      |      |  %   |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -50,8 +51,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_L1] = LAYOUT(
   KC_F1,   KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-  _______, _______,    KC_AT,   KC_LCBR, KC_RCBR, KC_F6,                     KC_F7,   KC_F8,   KC_EQL,  KC_PLUS,  _______, _______,
-  _______, TO(_NAVIG), KC_AMPR, KC_LPRN, KC_RPRN, _______,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, _______,
+  _______, _______,    KC_AT,   KC_LCBR, KC_RCBR, KC_F6,                     KC_F7,   KC_F8,   KC_EQL,  KC_PLUS, _______, _______,
+  _______, TO(_NAVIG), KC_AMPR, KC_LPRN, KC_RPRN, MO(_WINCT),                KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, _______,
   _______, TO(_MOUSE), KC_PIPE, KC_LBRC, KC_RBRC, _______, _______, _______, _______, _______, _______, KC_PERC, _______, _______,
                                 _______, _______, _______, _______, _______, _______, _______, _______
 ),
@@ -98,6 +99,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   _______,     KC_UNDO, KC_CUT,  KC_COPY, KC_PASTE, XXXXXXX, KC_ENT,  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                  _______, _______,  _______, _______, _______, _______, _______,_______
+),
+/* WINCT
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |QWERTY|      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                    |      |FULL  |FULL-V|      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |-------.    ,-------|      |H-THIR|H-TWOT|H-HALF|V_HALF|      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   |      |      |      | /       /       \      \  |      |      |      |
+ *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
+
+[_WINCT] = LAYOUT(
+  TO(_QWERTY), _______, _______, _______, _______,  _______,                   _______, _______,     _______,    _______,      _______,    _______,
+  _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                   XXXXXXX, LCA(KC_ENT), MEH(KC_UP), XXXXXXX,      XXXXXXX,    XXXXXXX,
+  _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                   XXXXXXX, LCA(KC_D),   LCA(KC_T),  LCA(KC_LEFT), LCA(KC_UP), _______,
+  _______,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX,     XXXXXXX,    XXXXXXX,      XXXXXXX,    XXXXXXX,
+                                 _______, _______,  _______, _______, _______, _______, _______,     _______
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -156,6 +179,9 @@ const char *read_layer_indicator(void) {
     break;
   case _MOUSE:
     snprintf(layer_state_str, sizeof(layer_state_str), "MOUSE");
+    break;
+  case _WINCT:
+    snprintf(layer_state_str, sizeof(layer_state_str), "WINCT");
     break;
   case _ADJUST:
     snprintf(layer_state_str, sizeof(layer_state_str), "ADJUST");
