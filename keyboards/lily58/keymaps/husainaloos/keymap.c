@@ -19,24 +19,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	 * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
 	 * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
 	 * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-	 * |X/HYPR|A/GUI |S/ALT |D/SHFT|F/CTRL|   G  |-------.    ,-------|   H  |J/CTRL|K/SHFT|L/ALT |;/GUI |'/HYPR|
+	 * |BACKSP|A/GUI |S/ALT |D/SHFT|F/CTRL|   G  |-------.    ,-------|   H  |J/CTRL|K/SHFT|L/ALT |;/GUI |'/HYPR|
 	 * |------+------+------+------+------+------|       |    | ENT   |------+------+------+------+------+------|
-	 * |ADJUST|  Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
+	 * |ADJUST|  Z   |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
 	 * `-----------------------------------------/       /     \      \-----------------------------------------'
-	 *                   |      |      |      | /Space  /       \Backsp\  |      |      | MEH  |
+	 *                   |      |      | L1   | /Space  /       \SHIFT \  |      |      | MEH  |
 	 *                   |      |      |      |/       /         \      \ | ENTR |      |      |
 	 *                   `----------------------------'           '------''--------------------'
 	 */
 	[_QWERTY] = LAYOUT(KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_GRV,
 			     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_MINS,
-			     HYPR_T(KC_NO), LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SCLN), HYPR_T(KC_QUOT),
+			     KC_BSPC, LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SCLN), HYPR_T(KC_QUOT),
 			     TO(_ADJUST), KC_Z, KC_X, KC_C, KC_V, KC_B, _______, KC_ENT, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
-			     XXXXXXX, XXXXXXX, MO(_L1), KC_SPC, KC_BSPC, KC_ENT, XXXXXXX, KC_MEH),
+			     XXXXXXX, XXXXXXX, MO(_L1), KC_SPC, KC_RSFT, KC_ENT, XXXXXXX, KC_MEH),
 /* L1
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |     |QWERTY|      |  {   |  }   |  F6  |                    |  F7  |  F8  |  =   |  +   |      |      |
+ * |      |QWERTY|      |  {   |  }   |  F6  |                    |  F7  |  F8  |  =   |  +   |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      | NAVIG|      |  (   |  )   |WINCT |-------.    ,-------| LEFT | DOWN |  UP  |RIGHT |      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
