@@ -4,7 +4,6 @@
 
 enum layer_number {
 	_QWERTY = 0,
-	_QWERTY_2,
 	_L1,
 	_NAVIG,
 	_WINCT,
@@ -13,28 +12,6 @@ enum layer_number {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
-/* QWERTY
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |ESCAPE|   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|       |    | ENT   |------+------+------+------+------+------|
- * |ADJUST|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
- * `-----------------------------------------/       /     \ Shft \-----------------------------------------'
- *                   | GUI  | ALT  | L1   | /Space  /       \Backsp\  | CTRL | ALT  | MEH  |
- *                   |      |      |      |/       /         \      \ | ENTR |      |      |
- *                   `----------------------------'           '------''--------------------'
- */
-
-	[_QWERTY] = LAYOUT(KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_GRV,
-			   KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_MINS,
-			   _______, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
-			   MO(_ADJUST), KC_Z, KC_X, KC_C, KC_V, KC_B, _______, KC_ENT, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
-			   KC_LGUI, KC_LALT, MO(_L1), KC_SPC, RSFT_T(KC_BSPC), RCTL_T(KC_ENT), KC_RALT, KC_MEH),
-
 	/* QWERTY_2
 	 * This is an experimental layer for now.
 	 * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -44,22 +21,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	 * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
 	 * |X/HYPR|A/GUI |S/ALT |D/SHFT|F/CTRL|   G  |-------.    ,-------|   H  |J/CTRL|K/SHFT|L/ALT |;/GUI |'/HYPR|
 	 * |------+------+------+------+------+------|       |    | ENT   |------+------+------+------+------+------|
-	 * |QWERTY|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
+	 * |ADJUST|  Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
 	 * `-----------------------------------------/       /     \      \-----------------------------------------'
 	 *                   |      |      |      | /Space  /       \Backsp\  |      |      | MEH  |
 	 *                   |      |      |      |/       /         \      \ | ENTR |      |      |
 	 *                   `----------------------------'           '------''--------------------'
 	 */
-	[_QWERTY_2] = LAYOUT(KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_GRV,
+	[_QWERTY] = LAYOUT(KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_GRV,
 			     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_MINS,
 			     HYPR_T(KC_NO), LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SCLN), HYPR_T(KC_QUOT),
-			     TO(_QWERTY), KC_Z, KC_X, KC_C, KC_V, KC_B, _______, KC_ENT, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
+			     TO(_ADJUST), KC_Z, KC_X, KC_C, KC_V, KC_B, _______, KC_ENT, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
 			     XXXXXXX, XXXXXXX, MO(_L1), KC_SPC, KC_BSPC, KC_ENT, XXXXXXX, KC_MEH),
 /* L1
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |     |QWERTY2|      |  {   |  }   |  F6  |                    |  F7  |  F8  |  =   |  +   |      |      |
+ * |     |QWERTY|      |  {   |  }   |  F6  |                    |  F7  |  F8  |  =   |  +   |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      | NAVIG|      |  (   |  )   |WINCT |-------.    ,-------| LEFT | DOWN |  UP  |RIGHT |      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -70,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 	[_L1] = LAYOUT(KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12,
-		       _______, TO(_QWERTY_2), _______, KC_LCBR, KC_RCBR, KC_F6, KC_F7, KC_F8, KC_EQL, KC_PLUS, _______, _______,
+		       _______, TO(_QWERTY), _______, KC_LCBR, KC_RCBR, KC_F6, KC_F7, KC_F8, KC_EQL, KC_PLUS, _______, _______,
 		       _______, TO(_NAVIG), _______, KC_LPRN, KC_RPRN, MO(_WINCT), KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, _______, _______,
 		       _______, TO(_MOUSE), KC_PIPE, KC_LBRC, KC_RBRC, _______, _______, _______, _______, _______, KC_PGUP, KC_PGDN, _______, _______,
 		       _______, _______, _______, _______, _______, _______, _______, _______),
@@ -197,9 +174,6 @@ const char *read_layer_indicator(void)
 		break;
 	case _ADJUST:
 		snprintf(layer_state_str, sizeof(layer_state_str), "ADJUST");
-		break;
-	case _QWERTY_2:
-		snprintf(layer_state_str, sizeof(layer_state_str), "QWERTY_2");
 		break;
 	default:
 		snprintf(layer_state_str, sizeof(layer_state_str), "UNKNWN");
