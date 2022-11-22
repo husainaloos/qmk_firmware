@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	 * |------+------+------+------+------+------|BACKSP |    | ENT   |------+------+------+------+------+------|
 	 * |ADJUST|  Z   |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
 	 * `-----------------------------------------/       /     \      \-----------------------------------------'
-	 *                   |      |      | L1   | /Space  /       \SHIFT \  |      |      | MEH  |
+	 *                   | MOUSE|      | L1   | /Space  /       \SHIFT \  |      |      | MEH  |
 	 *                   |      |      |      |/       /         \      \ | ENTR |      |      |
 	 *                   `----------------------------'           '------''--------------------'
 	 */
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_MINS,
 			     KC_GRV, LSFT_T(KC_A), LALT_T(KC_S), LGUI_T(KC_D), LCTL_T(KC_F), KC_G, KC_H, RCTL_T(KC_J), RGUI_T(KC_K), RALT_T(KC_L), RSFT_T(KC_SCLN), HYPR_T(KC_QUOT),
 			     MO(_ADJUST), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_BSPC, KC_ENT, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
-			     XXXXXXX, XXXXXXX, MO(_L1), KC_SPC, KC_RSFT, KC_ENT, XXXXXXX, KC_MEH),
+                           MO(_MOUSE), XXXXXXX, MO(_L1), KC_SPC, KC_RSFT, KC_ENT, XXXXXXX, KC_MEH),
 /* L1
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
+ * |      |GUI+Z |GUI+X |GUI+C |GUI+V |      |-------.    ,-------|      |      |      |      |      |      |
  * |------+------+------+------+------+------| ENTER |    |       |------+------+------+------+------+------|
  * |QWERTY| UNDO | CUT  | COPY | PASTE|      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[_MOUSE] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 			  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
-			  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+			  _______, LGUI_T(KC_Z), LGUI_T(KC_X), LGUI_T(KC_C), LGUI_T(KC_V), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 			  TO(_QWERTY), KC_UNDO, KC_CUT, KC_COPY, KC_PASTE, XXXXXXX, KC_ENT, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 			  _______, _______, _______, _______, _______, _______, _______, _______),
 /* WINCT
