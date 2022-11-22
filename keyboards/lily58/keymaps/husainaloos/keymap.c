@@ -15,11 +15,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/* QWERTY_2
 	 * This is an experimental layer for now.
 	 * ,-----------------------------------------.                    ,-----------------------------------------.
-	 * |ESCAPE|   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+	 * |ESCAPE|   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |BACKSP|
 	 * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
 	 * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
 	 * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-	 * |      |A/SHFT|S/ALT |D/GUI |F/CTRL|   G  |-------.    ,-------|   H  |J/CTRL|K/GUI |L/ALT |;/SHFT|'/HYPR|
+	 * |  `   |A/SHFT|S/ALT |D/GUI |F/CTRL|   G  |-------.    ,-------|   H  |J/CTRL|K/GUI |L/ALT |;/SHFT|'/HYPR|
 	 * |------+------+------+------+------+------|BACKSP |    | ENT   |------+------+------+------+------+------|
 	 * |ADJUST|  Z   |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
 	 * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -27,9 +27,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	 *                   |      |      |      |/       /         \      \ | ENTR |      |      |
 	 *                   `----------------------------'           '------''--------------------'
 	 */
-	[_QWERTY] = LAYOUT(KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_GRV,
+	[_QWERTY] = LAYOUT(KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC,
 			     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_MINS,
-			     XXXXXXX, LSFT_T(KC_A), LALT_T(KC_S), LGUI_T(KC_D), LCTL_T(KC_F), KC_G, KC_H, RCTL_T(KC_J), RGUI_T(KC_K), RALT_T(KC_L), RSFT_T(KC_SCLN), HYPR_T(KC_QUOT),
+			     KC_GRV, LSFT_T(KC_A), LALT_T(KC_S), LGUI_T(KC_D), LCTL_T(KC_F), KC_G, KC_H, RCTL_T(KC_J), RGUI_T(KC_K), RALT_T(KC_L), RSFT_T(KC_SCLN), HYPR_T(KC_QUOT),
 			     MO(_ADJUST), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_BSPC, KC_ENT, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
 			     XXXXXXX, XXXXXXX, MO(_L1), KC_SPC, KC_RSFT, KC_ENT, XXXXXXX, KC_MEH),
 /* L1
