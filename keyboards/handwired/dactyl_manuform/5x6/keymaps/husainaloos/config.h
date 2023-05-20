@@ -1,0 +1,7 @@
+#pragma once
+#define USE_SERIAL
+#define MASTER_LEFT
+#undef TAPPING_TERM
+#define TAPPING_TERM 200
+#define IGNORE_MOD_TAP_INTERRUPT
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
